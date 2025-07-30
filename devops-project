@@ -1,0 +1,72 @@
+https://github.com/techiescamp/kubernetes-projects
+===========================================================
+create a vpc and ec2 attach sequirty grp to it:
+give permission of http and https and 8080, ssh, 30000-32767
+===========================================================
+first install docker and setup minikube:-----------------------
+===============================================================
+-first make an ec2 instance
+-- install docker 
+  sudo apt update
+  sudo apt install docker.io -y
+
+--Install kubectl:
+
+Download and install kubectl:
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+sudo usermod -aG docker $USER
+newgrp docker
+
+
+--Install Minikube:
+
+Download and install Minikube:
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+--Step 3: Configure Minikube
+
+minikube start --driver=docker
+--Verify Installation:
+
+Check Minikube status:
+minikube status
+
+Verify Kubernetes is running:
+kubectl get nodes
+
+minikube start
+minikube addons enable ingress    ///for ingress controller
+kubectl get pods -n kube-system   //to check running
+==================================================================================
+then clone repository:
+git clone https://github.com/spring-projects/spring-petclinic.git
+
+sudo apt install openjdk-17-jdk -yjava -versioncd /opt
+sudo wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.6/apache-maven-3.9.6-bin.tar.gz
+sudo tar -xvzf apache-maven-3.9.6-bin.tar.gz
+sudo ln -s apache-maven-3.9.6 maven
+
+sudo nano /etc/profile.d/maven.sh
+now paste it:
+export M2_HOME=/opt/maven
+export MAVEN_HOME=/opt/maven
+export PATH=${MAVEN_HOME}/bin:${PATH}
+source /etc/profile.d/maven.sh
+cd ~/
+maven clean install
+mvn clean package -DskipTests
+==================================================================================
+now work as instructed in repository:
+https://github.com/techiescamp/kubernetes-projects
+====================================================================================
+
+kubectl port-forward svc/name-service 8080:8080 --address=0.0.0.0 &
+===================================================================================
+access it with ec2-public-ip:8080
+==============================================================================
+
