@@ -46,9 +46,11 @@ kubectl get pods -n kube-system   //to check running
 then clone repository:
 git clone https://github.com/spring-projects/spring-petclinic.git
 
-sudo apt install openjdk-17-jdk -yjava -versioncd /opt
+sudo apt install openjdk-17-jdk-y
+java --version
+cd /opt
 sudo wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.6/apache-maven-3.9.6-bin.tar.gz
-sudo tar -xvzf apache-maven-3.9.6-bin.tar.gz
+sudo tar -xvzf apache-maven-3.9.6-bin.tar.gz
 sudo ln -s apache-maven-3.9.6 maven
 
 sudo nano /etc/profile.d/maven.sh
@@ -56,8 +58,10 @@ now paste it:
 export M2_HOME=/opt/maven
 export MAVEN_HOME=/opt/maven
 export PATH=${MAVEN_HOME}/bin:${PATH}
-source /etc/profile.d/maven.sh
-cd ~/
+
+
+source /etc/profile.d/maven.sh
+cd ~/
 maven clean install
 mvn clean package -DskipTests
 ==================================================================================
